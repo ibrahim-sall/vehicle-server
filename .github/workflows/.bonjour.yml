@@ -7,9 +7,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4 
       - uses: juliangruber/read-file-action@v1
-        id: readfile
+        id: parle
         with:
           path: ./README.md
       - uses: Code-Hex/neo-cowsay-action@v1
         with:
-          message: ${{ steps.readfile.outputs.content }}
+          message: ${{ steps.parle.outputs.content }}
