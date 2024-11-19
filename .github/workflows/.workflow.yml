@@ -10,4 +10,4 @@ jobs:
         with:
           node-version: '20.17.x'
       - name: run 
-        run: npm build
+        run: npm run build
