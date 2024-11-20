@@ -1,4 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any -- supertest forces us to use any */
+/* eslint-disable @typescript-eslint/no-explicit-any -- supertest forces us to use any */ 
+
 import {expect, jest, test} from '@jest/globals';
 import { Pool } from 'pg';
 import { Request, Response } from 'express';
@@ -30,30 +31,25 @@ jest.mock('../store/vehicle', (() => ({
 describe('create vehicle controller', () => {
     let controller: CreateVehicleController;
     let store: VehicleStore;
-  
+
     // Avant chaque test on réinitialise le store et le controller.
     beforeEach(() => {
       store =  new VehicleStore({} as Pool); // <- instance mockée!
       controller = new CreateVehicleController(store);
     });
-  
+
     test('creates a valid vehicle', async () => {
-        // Given.
         const req = {
-          body: {
-            shortcode: 'abac',
-            battery: 17,
-            longitude: 45,
-            latitude: 45
-          },
+            body: {
+              shortcode: 'abac',
+              battery: 17,
+              longitude: 45,
+              latitude: 45
+            },
         };
-    
+
         const resp = new FakeResponse();
-    
-        // When.
         await controller.handle(req as Request, resp as unknown as Response);
-    
-        // Then.
         expect(resp.gotStatus).toEqual(200);
         expect(resp.gotJson).toEqual({
             vehicle: new Vehicle(
@@ -63,5 +59,5 @@ describe('create vehicle controller', () => {
                 {longitude: 45, latitude: 45},
             )
         });
-      });
     });
+  });

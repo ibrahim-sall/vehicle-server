@@ -43,7 +43,7 @@ interface row {
 }
 
 export class VehicleStore {
-  constructor(private readonly db: Pool) {this.db = db;}
+  constructor(private readonly db: Pool) {}
 
   async createVehicle(req: CreateVehicleRequest): Promise<Vehicle> {
     const result = await this.db.query(
