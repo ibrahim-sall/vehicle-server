@@ -1,6 +1,7 @@
 name: workflow1
 on:
   - push
+  - pull_request
 jobs:
   setup_workflow:
     runs-on: ubuntu-22.04
