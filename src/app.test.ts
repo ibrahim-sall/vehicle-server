@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-misused-promises -- supertest forces us to use any */
+
 import { describe, beforeAll, afterAll, beforeEach, afterEach, test } from '@jest/globals';
 import { Express } from 'express';
 import { Pool } from 'pg';
@@ -57,6 +59,7 @@ describe('vehicle server', () => {
   });
 
   test('GET /vehicles', async () => {
+    // Given.
     await dbConn.query(
       `INSERT INTO vehicle_server.vehicles (shortcode, battery, position) VALUES
         ('abcd', 94, ST_GeomFromText('POINT(-71.060316 48.432044)')),
